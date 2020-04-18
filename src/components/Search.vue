@@ -1,19 +1,25 @@
 <template>
+<v-container>
   <v-card>
     <v-card-text>
       <v-form>
         <v-text-field
-          label="Search"
-          prepend-icon="mdi-search"
-          v-model="queryString"
+          label="Search for films"
+          prepend-icon="mdi-magnify"
+          v-model="userInput"
         />
       </v-form>
-      {{ queryString }}
     </v-card-text>
     <v-card-actions>
-      <v-btn @click="query">Search!</v-btn>
+      <v-btn
+        @click="query"
+        color='info'
+      >
+        Search!
+      </v-btn>
     </v-card-actions>
   </v-card>
+</v-container>
 </template>
 
 <script>
@@ -21,12 +27,11 @@ export default {
   name: 'Search',
 
   data: () => ({
-    queryString: '',
+    userInput: '',
   }),
+
   methods: {
-    query: () => {
-      console.log(this.queryString);
-    },
+    query: () => this.userInput,
   },
 };
 </script>

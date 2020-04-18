@@ -1,9 +1,9 @@
 <template>
   <v-container>
     <v-card>
-      <h2>
+      <v-card-text>
         Movie List items here
-      </h2>
+      </v-card-text>
     </v-card>
   </v-container>
 </template>
@@ -11,7 +11,6 @@
 <script>
 export default {
   name: 'MovieList',
-
   data: () => ({}),
 };
 </script>
