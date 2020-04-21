@@ -31,7 +31,7 @@ export default {
   }),
 
   methods: {
-    query: () => this.userInput,
+    query: () => console.log(this.userInput),
   },
 };
 </script>
