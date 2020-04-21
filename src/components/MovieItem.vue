@@ -1,5 +1,6 @@
 <template>
   <v-card
+    @click="testing"
     class="mx-auto"
     max-width="500"
     dark
@@ -37,5 +38,8 @@ export default {
   data: () => ({
     imageUrl: 'https://image.tmdb.org/t/p/w500',
   }),
+  methods: {
+    testing: () => console.log('access movie ID here, to either add or take to details page'),
+  },
 };
 </script>

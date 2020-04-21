@@ -13,7 +13,7 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import sampleData from './data/sampleData';
 import MovieList from './components/MovieList.vue';
 import Search from './components/Search.vue';
@@ -27,16 +27,17 @@ export default {
 
   data: () => ({
     movies: sampleData.results,
+    importedMovies: null,
   }),
 
-  // mounted: () => {
-  //   axios
-  //     .get(process.env.VUE_APP_BASE_URL)
-  //     .then((response) => {
-  //       const { results } = response.data;
-  //       this.movies = results;
-  //     })
-  //     .catch((err) => err);
-  // },
+  mounted: () => {
+    axios
+      .get(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.VUE_APP_MOVIE_API_KEY}&language=en-US&page=2`)
+      .then((response) => {
+        const { results } = response.data;
+        this.importedMovies = results;
+      })
+      .catch((err) => err);
+  },
 };
 </script>
