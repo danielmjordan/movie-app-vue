@@ -6,13 +6,13 @@
         <v-text-field
           label="Search for films"
           prepend-icon="mdi-magnify"
-          v-model="userInput"
+          v-model="queryString"
         />
       </v-form>
     </v-card-text>
     <v-card-actions>
       <v-btn
-        @click="query"
+        @click="search"
         color='info'
       >
         Search!
@@ -26,12 +26,16 @@
 export default {
   name: 'Search',
 
-  data: () => ({
-    userInput: '',
-  }),
+  data() {
+    return {
+      queryString: '',
+    };
+  },
 
   methods: {
-    query: () => console.log(this.userInput),
+    search() {
+      console.log(this.queryString);
+    },
   },
 };
 </script>

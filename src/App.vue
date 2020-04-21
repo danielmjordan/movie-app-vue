@@ -1,11 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <v-card>
-        <v-card-title>
-          MovieApp
-        </v-card-title>
-      </v-card>
+      <AppBar />
       <Search />
       <MovieList :movies="movies"/>
     </v-container>
