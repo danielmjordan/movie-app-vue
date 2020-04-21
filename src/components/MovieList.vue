@@ -1,10 +1,15 @@
 <template>
-  <v-container>
-    <ul>
-      <li v-for="movie in movies" :key="movie.id" style="none">
-        <MovieItem :movie="movie" :title="movie.title"/>
-      </li>
-    </ul>
+  <v-container fluid>
+    <v-row dense>
+      <v-col
+        v-for="movie in movies"
+        :key="movie.id"
+        style="none"
+        cols="4"
+      >
+        <MovieItem :movie="movie" />
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -21,9 +26,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-  li {
-    list-style: none;
-  }
-</style>
