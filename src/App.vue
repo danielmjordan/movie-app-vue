@@ -2,7 +2,11 @@
   <v-app>
     <v-container>
       <Search />
-      <MovieList :movies="movies"/>
+      <MovieList :movies="movies" @add-to-favorites="addFavorite($event)"/>
+    </v-container>
+    <v-container>
+      <h2>Favorites</h2>
+      <MovieList :movies="favorites" />
     </v-container>
   </v-app>
 </template>
@@ -25,6 +29,16 @@ export default {
       showFavorites: false,
       favorites: [],
     };
+  },
+
+  methods: {
+    addFavorite(movie) {
+      this.favorites.push(movie);
+      console.log(this.favorites);
+    },
+    removeFromList() {
+
+    },
   },
 
   mounted() {

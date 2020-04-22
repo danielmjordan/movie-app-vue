@@ -7,7 +7,7 @@
         style="none"
         cols="4"
       >
-        <MovieItem :movie="movie" />
+        <MovieItem :movie="movie" @add-to-favorites="addFavorite($event)" />
       </v-col>
     </v-row>
   </v-container>
@@ -23,6 +23,11 @@ export default {
   },
   components: {
     MovieItem,
+  },
+  methods: {
+    addFavorite($event) {
+      this.$emit('add-to-favorites', $event);
+    },
   },
 };
 </script>

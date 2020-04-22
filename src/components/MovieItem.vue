@@ -17,11 +17,11 @@
       {{ movie.overview }}
     </v-card-text>
     <v-card-actions>
-      <v-btn @click="removeFromList">
+      <v-btn @click="addToFavorites">
         <v-icon>mdi-cards-heart</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn @click="addToFavorites">
+      <v-btn @click="removeFromList">
         <v-icon>mdi-delete</v-icon>
       </v-btn>
     </v-card-actions>
@@ -41,10 +41,10 @@ export default {
   },
   methods: {
     removeFromList() {
-      return this.movie.id;
+      this.$emit('remove-from-list', this.movie.id);
     },
     addToFavorites() {
-      return this.movie.id;
+      this.$emit('add-to-favorites', this.movie);
     },
   },
 };
