@@ -7,7 +7,11 @@
         style="none"
         cols="4"
       >
-        <MovieItem :movie="movie" @add-to-favorites="addFavorite($event)" />
+        <MovieItem
+          :movie="movie"
+          @add-to-favorites="addFavorite($event)"
+          @remove-from-list="removeMovie($event)"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -27,6 +31,9 @@ export default {
   methods: {
     addFavorite($event) {
       this.$emit('add-to-favorites', $event);
+    },
+    removeMovie($event) {
+      this.$emit('remove-from-list', $event);
     },
   },
 };

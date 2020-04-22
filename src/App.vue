@@ -2,7 +2,11 @@
   <v-app>
     <v-container>
       <Search />
-      <MovieList :movies="movies" @add-to-favorites="addFavorite($event)"/>
+      <MovieList
+        :movies="movies"
+        @add-to-favorites="addFavorite($event)"
+        @remove-from-list="removeMovie($event)"
+      />
     </v-container>
     <v-container>
       <h2>Favorites</h2>
@@ -34,10 +38,9 @@ export default {
   methods: {
     addFavorite(movie) {
       this.favorites.push(movie);
-      console.log(this.favorites);
     },
-    removeFromList() {
-
+    removeMovie(id) {
+      this.movies = this.movies.filter((el) => el.id !== id);
     },
   },
 
