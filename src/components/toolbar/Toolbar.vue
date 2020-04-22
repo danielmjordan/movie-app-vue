@@ -6,25 +6,21 @@
         MovieApp
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click="showSearch = !showSearch">
+      <v-btn icon @click="show = !show">
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-btn
-        v-if="!showFavorites"
         @click="toggleView"
         icon
       >
-        <v-icon>mdi-heart</v-icon>
+        <v-icon>{{ showFavorites ? 'mdi-filmstrip' : 'mdi-heart' }}</v-icon>
       </v-btn>
-      <v-btn
-        v-else
-        @click="toggleView"
-        icon>
-        <v-icon>mdi-filmstrip</v-icon>
-      </v-btn>
-
     </v-toolbar>
-    <Search v-show="showSearch"/>
+    <v-expand-transition>
+      <div v-show="show">
+        <Search />
+      </div>
+    </v-expand-transition>
   </v-container>
 </template>
 
@@ -41,7 +37,7 @@ export default {
   },
   data() {
     return {
-      showSearch: false,
+      show: false,
     };
   },
   methods: {
