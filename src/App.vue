@@ -1,25 +1,32 @@
 <template>
   <v-app>
     <v-container>
-        <Toolbar />
-        <h4>Top-Rated Films ({{ movies.length }})</h4>
+      <Toolbar
+        :showFavorites="showFavorites"
+        @toggle-view="toggleView()"
+      />
+      <div v-show="!showFavorites">
+        <h2>Top Rated Movies</h2>
         <MovieList
           :movies="movies"
           @add-to-favorites="addFavorite($event)"
           @remove-from-list="removeMovie($event)"
         />
+      </div>
+      <div v-show="showFavorites">
         <h2>Favorites ({{ favorites.length }})</h2>
         <MovieList
           :movies="favorites"
           @remove-from-list="removeFromFavorites($event)"
         />
+      </div>
       </v-container>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios';
-import Toolbar from './components/Toolbar.vue';
+import Toolbar from './components/toolbar/Toolbar.vue';
 import MovieList from './components/MovieList.vue';
 
 export default {
@@ -34,10 +41,14 @@ export default {
       movies: null,
       showFavorites: false,
       favorites: [],
+      page: 10,
     };
   },
 
   methods: {
+    toggleView() {
+      this.showFavorites = !this.showFavorites;
+    },
     addFavorite(movie) {
       this.favorites.push(movie);
     },
@@ -51,7 +62,7 @@ export default {
 
   mounted() {
     axios
-      .get(`${process.env.VUE_APP_BASE_URL}`)
+      .get(`${process.env.VUE_APP_BASE_URL}top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=${this.page}`)
       .then((response) => {
         const { results } = response.data;
         this.movies = results;
