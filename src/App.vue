@@ -9,7 +9,6 @@
 
 <script>
 import axios from 'axios';
-// import sampleData from './data/sampleData';
 import MovieList from './components/MovieList.vue';
 import Search from './components/Search.vue';
 
@@ -23,13 +22,14 @@ export default {
   data() {
     return {
       movies: null,
-      importedMovies: null,
+      showFavorites: false,
+      favorites: [],
     };
   },
 
   mounted() {
     axios
-      .get(process.env.VUE_APP_BASE_URL)
+      .get(`${process.env.VUE_APP_BASE_URL}`)
       .then((response) => {
         const { results } = response.data;
         this.movies = results;

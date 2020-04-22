@@ -1,6 +1,5 @@
 <template>
   <v-card
-    @click="testing"
     class="mx-auto"
     max-width="500"
     dark
@@ -14,16 +13,16 @@
     <v-card-subtitle>
       Rating: {{ movie.vote_average }} ({{movie.vote_count}} votes)
     </v-card-subtitle>
-    <v-card-text style="overflow-y: auto; height:100px" >
+    <v-card-text>
       {{ movie.overview }}
     </v-card-text>
     <v-card-actions>
-      <v-btn @click="add">
-        Add
+      <v-btn @click="removeFromList">
+        <v-icon>mdi-cards-heart</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn @click="remove">
-        Remove
+      <v-btn @click="addToFavorites">
+        <v-icon>mdi-delete</v-icon>
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -41,11 +40,11 @@ export default {
     };
   },
   methods: {
-    remove() {
-      console.log(this.movie.id);
+    removeFromList() {
+      return this.movie.id;
     },
-    add() {
-      console.log(this.movie.id);
+    addToFavorites() {
+      return this.movie.id;
     },
   },
 };

@@ -13,9 +13,9 @@
     <v-card-actions>
       <v-btn
         @click="search"
-        color='info'
+        dark
       >
-        Search!
+      Search!
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -35,6 +35,7 @@ export default {
   methods: {
     search() {
       console.log(this.queryString);
+      this.queryString = '';
     },
   },
 };
