@@ -18,11 +18,11 @@
       {{ movie.overview }}
     </v-card-text>
     <v-card-actions>
-      <v-btn>
+      <v-btn @click="add">
         Add
       </v-btn>
       <v-spacer></v-spacer>
-      <v-btn>
+      <v-btn @click="remove">
         Remove
       </v-btn>
     </v-card-actions>
@@ -35,11 +35,18 @@ export default {
   props: {
     movie: Object,
   },
-  data: () => ({
-    imageUrl: 'https://image.tmdb.org/t/p/w500',
-  }),
+  data() {
+    return {
+      imageUrl: 'https://image.tmdb.org/t/p/w500',
+    };
+  },
   methods: {
-    testing: () => console.log('access movie ID here, to either add or take to details page'),
+    remove() {
+      console.log(this.movie.id);
+    },
+    add() {
+      console.log(this.movie.id);
+    },
   },
 };
 </script>
