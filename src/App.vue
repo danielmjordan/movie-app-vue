@@ -41,7 +41,7 @@ export default {
       movies: null,
       showFavorites: false,
       favorites: [],
-      page: 2,
+      page: 1,
     };
   },
 
@@ -56,7 +56,9 @@ export default {
       this.showFavorites = !this.showFavorites;
     },
     addFavorite(movie) {
-      this.favorites.push(movie);
+      if (!this.favorites.includes(movie)) {
+        this.favorites.push(movie);
+      }
     },
     removeMovie(id) {
       this.movies = this.movies.filter((el) => el.id !== id);
