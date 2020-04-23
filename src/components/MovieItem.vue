@@ -1,8 +1,16 @@
 <template>
 <v-container fluid>
   <v-expand-transition>
-      <v-dialog v-model="showDetail">
-        <MovieItemDetail :movieDetails="movie"/>
+      <v-dialog
+        v-model="showDetail"
+        width="800"
+        scrollable
+        dark
+      >
+        <MovieItemDetail
+          :movieDetails="movie"
+          :imageUrl="imageUrl"
+        />
       </v-dialog>
     </v-expand-transition>
   <v-card
@@ -15,6 +23,7 @@
     <v-img
       class="white--text align-end"
       :src="imageUrl + movie.poster_path"
+      height="500"
     />
     <v-card-title
       class="headline text-truncate d-inline-block"

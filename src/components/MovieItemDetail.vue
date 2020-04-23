@@ -1,10 +1,22 @@
 <template>
   <v-continer fluid>
     <v-card>
-      <h1>Movie Detail Page</h1>
-      <p v-for="detail in movieDetails" :key="detail.id">
-        <span>{{ detail }}</span>
-      </p>
+      <v-img
+        :src="imageUrl + movieDetails.backdrop_path"
+      >
+      </v-img>
+      <v-card-title>{{ movieDetails.title }}</v-card-title>
+      <v-card-subtitle>
+        Rating: {{ movieDetails.vote_average }} ({{ movieDetails.vote_count}} votes)
+      </v-card-subtitle>
+      <v-card-text height="200">
+        <span>
+          {{ movieDetails.overview }}
+        </span>
+        <span>
+          {{ movieDetails.release_date }}
+        </span>
+      </v-card-text>
     </v-card>
   </v-continer>
 </template>
@@ -13,6 +25,7 @@
 export default {
   name: 'MovieItemDetail',
   props: {
+    imageUrl: String,
     movieDetails: Object,
   },
 };
