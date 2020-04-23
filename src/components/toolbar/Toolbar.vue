@@ -1,10 +1,9 @@
 <template>
   <v-container>
-    <v-toolbar dense>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      <v-toolbar-title>
+    <div class="d-inline">
+      <h1>
         MovieApp
-      </v-toolbar-title>
+      </h1>
       <v-spacer></v-spacer>
       <v-btn icon @click="show = !show">
         <v-icon>mdi-magnify</v-icon>
@@ -15,7 +14,7 @@
       >
         <v-icon>{{ showFavorites ? 'mdi-filmstrip' : 'mdi-heart' }}</v-icon>
       </v-btn>
-    </v-toolbar>
+    </div>
     <v-expand-transition>
       <div v-show="show">
         <Search @search-response="applySearchResults($event)"/>
