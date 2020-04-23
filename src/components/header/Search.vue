@@ -61,7 +61,7 @@ export default {
             setTimeout(() => {
               this.isCalculating = false;
               this.searchQueryIsDirty = false;
-            }, 750);
+            }, 500);
           })
           .catch((err) => err);
       }, 500);

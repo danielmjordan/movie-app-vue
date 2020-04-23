@@ -10,7 +10,7 @@
         <MovieList
           :movies="movies"
           :showIcon="true"
-          :heading="'Top-Rated Films'"
+          :heading="heading"
           @add-to-favorites="addFavorite($event)"
           @remove-from-list="removeMovie($event)"
         />
@@ -44,6 +44,7 @@ export default {
       movies: null,
       showFavorites: false,
       favorites: [],
+      heading: '',
       page: 1,
     };
   },
@@ -54,6 +55,7 @@ export default {
       this.movies = results
         .filter((el) => el.poster_path)
         .sort((a, b) => b.popularity - a.popularity);
+      this.heading = 'Search Results';
     },
     toggleView() {
       this.showFavorites = !this.showFavorites;
@@ -77,6 +79,7 @@ export default {
       .then((response) => {
         const { results } = response.data;
         this.movies = results;
+        this.heading = 'Top-Rated Films';
       })
       .catch((err) => err);
   },
