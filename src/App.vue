@@ -72,7 +72,7 @@ export default {
     },
     toggleView() {
       this.showFavorites = !this.showFavorites;
-      this.getFilms(this.page);
+      this.getFilms(this.pageNumber);
     },
     addFavorite(movie) {
       if (!this.favorites.includes(movie)) {

@@ -30,7 +30,7 @@ export default {
         return 'Searching...';
       }
       if (this.searchQueryIsDirty) {
-        return '...Typing';
+        return 'Typing...';
       }
       return '✓ Finished';
     },

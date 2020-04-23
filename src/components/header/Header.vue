@@ -3,6 +3,7 @@
     <h1>
       MovieApp
     </h1>
+    <h3>{{ pageNum }}</h3>
       <v-btn @click="show = !show" icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
