@@ -39,6 +39,7 @@ export default {
     },
     applySearchResults($event) {
       this.$emit('search-response', $event);
+      this.show = false;
     },
   },
 };
