@@ -1,21 +1,14 @@
 <template>
   <v-container>
-    <div class="header">
-      <h1>
-        MovieApp
-      </h1>
-      <span class="header-controls">
-        <v-btn icon @click="show = !show">
-          <v-icon large>mdi-magnify</v-icon>
-        </v-btn>
-        <v-btn
-          @click="toggleView"
-          icon
-        >
-          <v-icon large>{{ showFavorites ? 'mdi-home' : 'mdi-heart' }}</v-icon>
-        </v-btn>
-      </span>
-    </div>
+    <h1>
+      MovieApp
+    </h1>
+      <v-btn @click="show = !show" icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn @click="toggleView" icon>
+        <v-icon>{{ showFavorites ? 'mdi-home' : 'mdi-heart' }}</v-icon>
+      </v-btn>
     <v-expand-transition>
       <div v-show="show">
         <Search @search-response="applySearchResults($event)"/>
@@ -28,7 +21,7 @@
 import Search from './Search.vue';
 
 export default {
-  name: 'Toolbar',
+  name: 'Header',
   components: {
     Search,
   },

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <Toolbar
+      <Header
         :showFavorites="showFavorites"
         @toggle-view="toggleView()"
         @search-response="applySearchResults($event)"
@@ -27,13 +27,13 @@
 
 <script>
 import axios from 'axios';
-import Toolbar from './components/toolbar/Toolbar.vue';
+import Header from './components/header/Header.vue';
 import MovieList from './components/MovieList.vue';
 
 export default {
   name: 'App',
   components: {
-    Toolbar,
+    Header,
     MovieList,
   },
 

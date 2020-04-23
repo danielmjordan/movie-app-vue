@@ -28,6 +28,7 @@
       <v-spacer></v-spacer>
       <v-btn
         @click="show = !show"
+        v-if="movie.overview"
         icon
       >
         <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
