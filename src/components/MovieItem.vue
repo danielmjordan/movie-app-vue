@@ -56,7 +56,24 @@
       </div>
     </v-expand-transition>
   </v-card>
+  <div class="text-center">
+    <v-snackbar
+      v-model="snackbar"
+      timeout="2500"
+      multi-line="multiline"
+    >
+      "{{ movie.title }}" has been added to your favorites
+      <v-btn
+        color="blue"
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
+    </v-snackbar>
+  </div>
 </v-container>
+
 </template>
 
 <script>
@@ -76,6 +93,7 @@ export default {
       show: false,
       showDetail: false,
       clicked: false,
+      snackbar: false,
       imageUrl: 'https://image.tmdb.org/t/p/w500',
     };
   },
@@ -87,6 +105,7 @@ export default {
     addToFavorites() {
       this.$emit('add-to-favorites', this.movie);
       this.clicked = !this.clicked;
+      this.snackbar = true;
     },
   },
 };
