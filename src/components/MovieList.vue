@@ -1,5 +1,6 @@
 <template>
   <v-container fluid>
+    <h2>{{ heading }}</h2>
     <v-row dense>
       <v-col
         v-for="movie in movies"
@@ -24,6 +25,7 @@ export default {
   name: 'MovieList',
   props: {
     movies: Array,
+    heading: String,
   },
   components: {
     MovieItem,

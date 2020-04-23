@@ -7,7 +7,6 @@
         @search-response="applySearchResults($event)"
       />
       <div v-show="!showFavorites">
-        <h2>Top Rated Movies</h2>
         <MovieList
           :movies="movies"
           @add-to-favorites="addFavorite($event)"
@@ -42,7 +41,7 @@ export default {
       movies: null,
       showFavorites: false,
       favorites: [],
-      page: 1,
+      page: 2,
     };
   },
 
