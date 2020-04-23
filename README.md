@@ -1,7 +1,7 @@
 # MovieApp!
-[![Alt text](https://img.youtube.com/vi/ZfmrFiqgPjs/0.jpg)](https://www.youtube.com/watch?v=ZfmrFiqgPjs)
+[![Alt text](https://img.youtube.com/vi/_YujIoZNE90/0.jpg)](https://youtu.be/_YujIoZNE90)
 
-A single-page movie application built in order to learn Vue.js
+A single-page movie application built to learn Vue.js
 
 ---
 ## Table of Contents
