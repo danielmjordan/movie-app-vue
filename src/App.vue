@@ -3,7 +3,10 @@
     <v-container>
       <Header
         :showFavorites="showFavorites"
+        :pageNum="pageNumber"
         @toggle-view="toggleView()"
+        @go-backwards="pageNumber--"
+        @go-forwards="pageNumber++"
         @search-response="applySearchResults($event)"
       />
       <div v-show="!showFavorites">
@@ -69,6 +72,7 @@ export default {
     },
     toggleView() {
       this.showFavorites = !this.showFavorites;
+      this.getFilms(this.page);
     },
     addFavorite(movie) {
       if (!this.favorites.includes(movie)) {

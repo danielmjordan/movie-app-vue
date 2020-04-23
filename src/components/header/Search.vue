@@ -3,8 +3,7 @@
   <v-form>
     <v-text-field
       label="Search for films"
-      v-model="searchQuery"
-    />
+      v-model="searchQuery"/>
     <strong v-if="searchQuery">{{ searchIndicator }}</strong>
   </v-form>
 </v-container>

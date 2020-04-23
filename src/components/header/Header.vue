@@ -9,6 +9,17 @@
       <v-btn @click="toggleView" icon>
         <v-icon>{{ showFavorites ? 'mdi-home' : 'mdi-heart' }}</v-icon>
       </v-btn>
+      <v-btn
+        v-if="pageNum > 1"
+        @click="goBackwards"
+        icon>
+        <v-icon>mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-btn
+        @click="goForwards"
+        icon>
+        <v-icon>mdi-arrow-right</v-icon>
+      </v-btn>
     <v-expand-transition>
       <div v-show="show">
         <Search @search-response="applySearchResults($event)"/>
@@ -27,6 +38,7 @@ export default {
   },
   props: {
     showFavorites: Boolean,
+    pageNum: Number,
   },
   data() {
     return {
@@ -39,6 +51,12 @@ export default {
     },
     applySearchResults($event) {
       this.$emit('search-response', $event);
+    },
+    goBackwards() {
+      this.$emit('go-backwards');
+    },
+    goForwards() {
+      this.$emit('go-forwards');
     },
   },
 };
