@@ -5,7 +5,7 @@
       label="Search for films"
       v-model="searchQuery"
     />
-    <strong>{{ searchIndicator }}</strong>
+    <strong v-if="searchQuery">{{ searchIndicator }}</strong>
   </v-form>
 </v-container>
 </template>
@@ -33,7 +33,7 @@ export default {
       if (this.searchQueryIsDirty) {
         return '...Typing';
       }
-      return 'Done';
+      return '✓ Finished';
     },
   },
 
@@ -58,8 +58,10 @@ export default {
             this.$emit('search-response', response);
           })
           .then(() => {
-            this.isCalculating = false;
-            this.searchQueryIsDirty = false;
+            setTimeout(() => {
+              this.isCalculating = false;
+              this.searchQueryIsDirty = false;
+            }, 750);
           })
           .catch((err) => err);
       }, 500);
