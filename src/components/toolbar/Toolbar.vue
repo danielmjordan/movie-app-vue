@@ -1,19 +1,20 @@
 <template>
   <v-container>
-    <div class="d-inline">
+    <div class="header">
       <h1>
         MovieApp
       </h1>
-      <v-spacer></v-spacer>
-      <v-btn icon @click="show = !show">
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn
-        @click="toggleView"
-        icon
-      >
-        <v-icon>{{ showFavorites ? 'mdi-filmstrip' : 'mdi-heart' }}</v-icon>
-      </v-btn>
+      <span class="header-controls">
+        <v-btn icon @click="show = !show">
+          <v-icon large>mdi-magnify</v-icon>
+        </v-btn>
+        <v-btn
+          @click="toggleView"
+          icon
+        >
+          <v-icon large>{{ showFavorites ? 'mdi-home' : 'mdi-heart' }}</v-icon>
+        </v-btn>
+      </span>
     </div>
     <v-expand-transition>
       <div v-show="show">

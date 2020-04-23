@@ -3,7 +3,6 @@
   <v-form>
     <v-text-field
       label="Search for films"
-      prepend-icon="mdi-magnify"
       v-model="queryString"
     />
   </v-form>

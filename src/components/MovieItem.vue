@@ -20,7 +20,7 @@
     </v-card-subtitle>
     <v-card-actions>
       <v-btn @click="addToFavorites">
-        <v-icon>mdi-cards-heart</v-icon>
+        <v-icon>{{ clicked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
       <v-btn @click="removeFromList">
         <v-icon>mdi-delete</v-icon>
@@ -52,15 +52,18 @@ export default {
   data() {
     return {
       show: false,
+      clicked: false,
       imageUrl: 'https://image.tmdb.org/t/p/w500',
     };
   },
   methods: {
     removeFromList() {
       this.$emit('remove-from-list', this.movie.id);
+      this.clicked = !this.clicked;
     },
     addToFavorites() {
       this.$emit('add-to-favorites', this.movie);
+      this.clicked = !this.clicked;
     },
   },
 };
