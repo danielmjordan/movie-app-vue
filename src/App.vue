@@ -45,11 +45,21 @@ export default {
       showFavorites: false,
       favorites: [],
       heading: '',
-      page: 1,
+      pageNumber: 1,
     };
   },
 
   methods: {
+    getFilms(page) {
+      axios
+        .get(`${process.env.VUE_APP_BASE_URL}top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=${page}`)
+        .then((response) => {
+          const { results } = response.data;
+          this.movies = results;
+          this.heading = 'Top-Rated Films';
+        })
+        .catch((err) => err);
+    },
     applySearchResults($event) {
       const { results } = $event.data;
       this.movies = results
@@ -73,15 +83,14 @@ export default {
     },
   },
 
+  watch: {
+    pageNumber() {
+      this.getFilms(this.pageNumber);
+    },
+  },
+
   mounted() {
-    axios
-      .get(`${process.env.VUE_APP_BASE_URL}top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=${this.page}`)
-      .then((response) => {
-        const { results } = response.data;
-        this.movies = results;
-        this.heading = 'Top-Rated Films';
-      })
-      .catch((err) => err);
+    this.getFilms(this.pageNumber);
   },
 };
 </script>

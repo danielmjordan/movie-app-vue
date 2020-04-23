@@ -1,44 +1,39 @@
 <template>
 <v-container fluid>
   <v-expand-transition>
-      <v-dialog
-        v-model="showDetail"
-        width="800"
-        scrollable
-        dark
-      >
-        <MovieItemDetail
-          :movieDetails="movie"
-          :imageUrl="imageUrl"
-        />
-      </v-dialog>
-    </v-expand-transition>
+    <v-dialog
+      v-model="showDetail"
+      width="800"
+      scrollable
+      dark>
+      <MovieItemDetail
+        :movieDetails="movie"
+        :imageUrl="imageUrl"/>
+    </v-dialog>
+  </v-expand-transition>
   <v-card
     class="mx-auto"
-    max-width="500"
+    width="500"
     dark
-    hover
-    @click="showDetail = !showDetail"
-  >
-    <v-img
-      class="white--text align-end"
-      :src="imageUrl + movie.poster_path"
-      height="500"
-    />
-    <v-card-title
-      class="headline text-truncate d-inline-block"
-      style="max-width: 350px"
-    >
-      {{ movie.title }}
-    </v-card-title>
+    hover>
+    <div @click="showDetail = !showDetail">
+      <v-img
+        class="white--text align-end"
+        :src="imageUrl + movie.poster_path"
+        height="500"/>
+      <v-card-title
+        class="headline text-truncate d-inline-block"
+        style="max-width: 350px">
+        {{ movie.title }}
+      </v-card-title>
+    </div>
     <v-card-subtitle>
       Rating: {{ movie.vote_average }} ({{movie.vote_count}} votes)
     </v-card-subtitle>
     <v-card-actions>
       <v-btn
         @click="addToFavorites"
-        v-if="showIcon"
-      >
+        v-if="showIcon">
         <v-icon>{{ clicked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
       <v-btn @click="removeFromList">
@@ -48,8 +43,7 @@
       <v-btn
         @click="show = !show"
         v-if="movie.overview"
-        icon
-      >
+        icon>
         <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
       </v-btn>
     </v-card-actions>
