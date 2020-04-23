@@ -10,6 +10,7 @@
       >
         <MovieItem
           :movie="movie"
+          :showIcon="showIcon"
           @add-to-favorites="addFavorite($event)"
           @remove-from-list="removeMovie($event)"
         />
@@ -26,6 +27,7 @@ export default {
   props: {
     movies: Array,
     heading: String,
+    showIcon: Boolean,
   },
   components: {
     MovieItem,

@@ -19,7 +19,10 @@
       Rating: {{ movie.vote_average }} ({{movie.vote_count}} votes)
     </v-card-subtitle>
     <v-card-actions>
-      <v-btn @click="addToFavorites">
+      <v-btn
+        @click="addToFavorites"
+        v-if="showIcon"
+      >
         <v-icon>{{ clicked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
       <v-btn @click="removeFromList">
@@ -49,6 +52,7 @@ export default {
   name: 'MovieItem',
   props: {
     movie: Object,
+    showIcon: Boolean,
   },
   data() {
     return {

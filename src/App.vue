@@ -9,14 +9,17 @@
       <div v-show="!showFavorites">
         <MovieList
           :movies="movies"
+          :showIcon="true"
+          :heading="'Top-Rated Films'"
           @add-to-favorites="addFavorite($event)"
           @remove-from-list="removeMovie($event)"
         />
       </div>
       <div v-show="showFavorites">
-        <h2>Favorites ({{ favorites.length }})</h2>
         <MovieList
           :movies="favorites"
+          :showIcon="false"
+          :heading="`Favorites (${favorites.length})`"
           @remove-from-list="removeFromFavorites($event)"
         />
       </div>
