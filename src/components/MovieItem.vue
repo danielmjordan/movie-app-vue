@@ -60,14 +60,13 @@
     <v-snackbar
       v-model="snackbar"
       timeout="2500"
-      multi-line="multiline"
-    >
+      top
+      multi-line="multiline">
       "{{ movie.title }}" has been added to your favorites
       <v-btn
         color="blue"
         text
-        @click="snackbar = false"
-      >
+        @click="snackbar = false">
         Close
       </v-btn>
     </v-snackbar>
