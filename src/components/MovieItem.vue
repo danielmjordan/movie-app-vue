@@ -3,6 +3,7 @@
     class="mx-auto"
     max-width="500"
     dark
+    hover
   >
     <v-img
       class="white--text align-end"

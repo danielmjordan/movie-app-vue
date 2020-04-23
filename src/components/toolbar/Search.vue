@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Search',
 
@@ -34,7 +36,12 @@ export default {
 
   methods: {
     search() {
-      console.log(this.queryString);
+      axios
+        .get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=1&query=${this.queryString}`)
+        .then((response) => {
+          this.$emit('search-response', response);
+        })
+        .catch((err) => err);
       this.queryString = '';
     },
   },

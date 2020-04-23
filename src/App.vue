@@ -4,6 +4,7 @@
       <Toolbar
         :showFavorites="showFavorites"
         @toggle-view="toggleView()"
+        @search-response="applySearchResults($event)"
       />
       <div v-show="!showFavorites">
         <h2>Top Rated Movies</h2>
@@ -41,11 +42,17 @@ export default {
       movies: null,
       showFavorites: false,
       favorites: [],
-      page: 10,
+      page: 1,
     };
   },
 
   methods: {
+    applySearchResults($event) {
+      const { results } = $event.data;
+      this.movies = results
+        .filter((el) => el.poster_path)
+        .sort((a, b) => b.popularity - a.popularity);
+    },
     toggleView() {
       this.showFavorites = !this.showFavorites;
     },

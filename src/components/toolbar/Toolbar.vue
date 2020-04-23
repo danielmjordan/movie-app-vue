@@ -18,7 +18,7 @@
     </v-toolbar>
     <v-expand-transition>
       <div v-show="show">
-        <Search />
+        <Search @search-response="applySearchResults($event)"/>
       </div>
     </v-expand-transition>
   </v-container>
@@ -43,6 +43,9 @@ export default {
   methods: {
     toggleView() {
       this.$emit('toggle-view');
+    },
+    applySearchResults($event) {
+      this.$emit('search-response', $event);
     },
   },
 };
