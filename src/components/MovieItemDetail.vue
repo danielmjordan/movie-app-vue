@@ -19,8 +19,9 @@
           @click="addToFavorites">
           <v-icon>{{ clicked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
         </v-btn>
-        <v-btn @click="removeFromList">
-          <v-icon>mdi-delete</v-icon>
+        <v-spacer></v-spacer>
+        <v-btn @click="closeModal">
+          <v-icon>mdi-close-circle</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -33,6 +34,11 @@ export default {
   props: {
     imageUrl: String,
     movieDetails: Object,
+  },
+  methods: {
+    closeModal() {
+      this.$emit('close-modal');
+    },
   },
 };
 </script>

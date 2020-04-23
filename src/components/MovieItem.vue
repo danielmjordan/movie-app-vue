@@ -7,6 +7,7 @@
       scrollable
       dark>
       <MovieItemDetail
+        @close-modal="showDetail = false"
         :movieDetails="movie"
         :imageUrl="imageUrl"/>
     </v-dialog>
