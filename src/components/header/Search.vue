@@ -3,9 +3,9 @@
   <v-form>
     <v-text-field
       label="Search for films"
-      v-model="queryString"
-      @keyup="search"
+      v-model="searchQuery"
     />
+    <strong>{{ searchIndicator }}</strong>
   </v-form>
 </v-container>
 </template>
@@ -18,9 +18,30 @@ export default {
 
   data() {
     return {
-      queryString: '',
+      searchQuery: '',
+      searchQueryIsDirty: false,
+      isCalculating: false,
       timeout: null,
     };
+  },
+
+  computed: {
+    searchIndicator() {
+      if (this.isCalculating) {
+        return 'Searching...';
+      }
+      if (this.searchQueryIsDirty) {
+        return '...Typing';
+      }
+      return 'Done';
+    },
+  },
+
+  watch: {
+    searchQuery() {
+      this.searchQueryIsDirty = true;
+      this.search();
+    },
   },
 
   methods: {
@@ -30,10 +51,15 @@ export default {
       }
 
       this.timeout = setTimeout(() => {
+        this.isCalculating = true;
         axios
-          .get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=1&query=${this.queryString}`)
+          .get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=1&query=${this.searchQuery}`)
           .then((response) => {
             this.$emit('search-response', response);
+          })
+          .then(() => {
+            this.isCalculating = false;
+            this.searchQueryIsDirty = false;
           })
           .catch((err) => err);
       }, 500);
