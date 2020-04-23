@@ -1,9 +1,16 @@
 <template>
+<v-container fluid>
+  <v-expand-transition>
+      <v-dialog v-model="showDetail">
+        <MovieItemDetail :movieDetails="movie"/>
+      </v-dialog>
+    </v-expand-transition>
   <v-card
     class="mx-auto"
     max-width="500"
     dark
     hover
+    @click="showDetail = !showDetail"
   >
     <v-img
       class="white--text align-end"
@@ -45,18 +52,25 @@
       </div>
     </v-expand-transition>
   </v-card>
+</v-container>
 </template>
 
 <script>
+import MovieItemDetail from './MovieItemDetail.vue';
+
 export default {
   name: 'MovieItem',
   props: {
     movie: Object,
     showIcon: Boolean,
   },
+  components: {
+    MovieItemDetail,
+  },
   data() {
     return {
       show: false,
+      showDetail: false,
       clicked: false,
       imageUrl: 'https://image.tmdb.org/t/p/w500',
     };
