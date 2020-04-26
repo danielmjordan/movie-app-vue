@@ -60,9 +60,10 @@
     <v-snackbar
       v-model="snackbar"
       timeout="2500"
-      top
+      bottom
+      left
       multi-line="multiline">
-      "{{ movie.title }}" has been added to your favorites
+      "{{ movie.title }}" has been {{ clicked ? 'added to' : 'removed from' }} your favorites
       <v-btn
         color="blue"
         text

@@ -10,7 +10,7 @@
         <v-icon>{{ showFavorites ? 'mdi-home' : 'mdi-heart' }}</v-icon>
       </v-btn>
       <v-btn
-        v-if="pageNum > 1"
+        v-show="pageNum > 1"
         @click="goBackwards"
         icon>
         <v-icon>mdi-arrow-left</v-icon>
