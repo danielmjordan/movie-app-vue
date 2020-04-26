@@ -89,7 +89,7 @@ export default {
 
   watch: {
     pageNumber() {
-      this.getFilms(this.pageNumber);
+      this.getFilms(this.$state.pageNumber);
     },
   },
 
