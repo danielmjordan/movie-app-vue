@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import axios from 'axios';
 import Header from './components/header/Header.vue';
 import MovieList from './components/MovieList.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -44,7 +44,6 @@ export default {
 
   data() {
     return {
-      movies: null,
       showFavorites: false,
       favorites: [],
       heading: '',
@@ -52,17 +51,13 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState({
+      movies: state => state.movies,
+    })
+  },
+
   methods: {
-    getFilms(page) {
-      axios
-        .get(`${process.env.VUE_APP_BASE_URL}top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=${page}`)
-        .then((response) => {
-          const { results } = response.data;
-          this.movies = results;
-          this.heading = 'Top-Rated Films';
-        })
-        .catch((err) => err);
-    },
     applySearchResults($event) {
       const { results } = $event.data;
       this.movies = results
@@ -89,12 +84,13 @@ export default {
 
   watch: {
     pageNumber() {
-      this.getFilms(this.$state.pageNumber);
+      this.getFilms(this.pageNumber);
     },
   },
 
   mounted() {
-    this.getFilms(this.pageNumber);
+    // this.getFilms(this.pageNumber);
+    this.$store.dispatch('loadMovies', this.page)
   },
 };
 </script>
