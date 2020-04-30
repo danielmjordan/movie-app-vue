@@ -11,6 +11,7 @@
 
 <script>
 import EventService from '@/services/EventService';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Search',
@@ -25,6 +26,7 @@ export default {
   },
 
   computed: {
+    ...mapState(['totalSearchResults']),
     searchIndicator() {
       if (this.isCalculating) {
         return 'Searching...';
@@ -32,7 +34,7 @@ export default {
       if (this.searchQueryIsDirty) {
         return 'Typing...';
       }
-      return '✓ Finished';
+      return `✓ Finished - (${this.totalSearchResults}) films match your query`;
     },
   },
 

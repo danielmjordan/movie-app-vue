@@ -10,7 +10,9 @@
         @close-modal="showDetail = false"
         :movieDetails="movie"
         :favorited="favorited"
-        :imageUrl="imageUrl"/>
+        :imageUrl="imageUrl"
+        :removeFromFavorites="removeFromFavorites"
+        :addToFavorites="addToFavorites"/>
     </v-dialog>
   </v-expand-transition>
   <v-card

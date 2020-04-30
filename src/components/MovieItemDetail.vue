@@ -11,8 +11,8 @@
       <v-card-subtitle>
         Rating: {{ movieDetails.vote_average }} ({{ movieDetails.vote_count}} votes)
       </v-card-subtitle>
-      <v-card-text height="200">
-          {{ movieDetails.overview }}
+      <v-card-text>
+        {{ movieDetails.overview }}
       </v-card-text>
       <v-card-actions>
         <v-btn
@@ -29,23 +29,20 @@
 </template>
 
 <script>
-// import { mapMutations } from 'vuex';
 
 export default {
   name: 'MovieItemDetail',
   props: {
     imageUrl: String,
     movieDetails: Object,
-    favorited: Boolean
+    favorited: Boolean,
+    removeFromFavorites: Function,
+    addToFavorites: Function
   },
   methods: {
     closeModal() {
       this.$emit('close-modal');
     },
-    // ...mapMutations({
-    //   addToFavorites: ('ADD_TO_FAVORITES', this.movieDetails),
-    //   removeFromFavorites: ('REMOVE_FROM_FAVORITES', this.movieDetails)
-    // })
   },
 };
 </script>

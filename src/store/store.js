@@ -56,7 +56,8 @@ const store = new Vuex.Store({
     },
 
     fetchFilmsByQuery({ commit }, response) {
-      commit('SET_MOVIES', response.results)
+      const resultsWithPhotos = response.results.filter(el => el.poster_path)
+      commit('SET_MOVIES', resultsWithPhotos)
       commit('SET_TOTAL_RESULTS', response.total_results)
     },
 
