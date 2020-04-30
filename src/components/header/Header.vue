@@ -3,7 +3,10 @@
     <h1>
       MovieApp
     </h1>
-      <v-btn @click="show = !show" icon>
+      <v-btn @click="showSelect = !showSelect" icon>
+        <v-icon>mdi-sort-variant</v-icon>
+      </v-btn>
+      <v-btn @click="showSearch = !showSearch" icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-btn @click="toggleView" icon>
@@ -21,8 +24,13 @@
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
     <v-expand-transition>
-      <div v-show="show">
+      <div v-show="showSearch">
         <Search />
+      </div>
+    </v-expand-transition>
+    <v-expand-transition>
+      <div v-show="showSelect">
+        <Selector />
       </div>
     </v-expand-transition>
   </v-container>
@@ -30,11 +38,13 @@
 
 <script>
 import Search from './Search.vue';
+import Selector from './Selector.vue';
 
 export default {
   name: 'Header',
   components: {
     Search,
+    Selector,
   },
   props: {
     showFavorites: Boolean,
@@ -42,7 +52,8 @@ export default {
   },
   data() {
     return {
-      show: false,
+      showSearch: false,
+      showSelect: false,
     };
   },
   methods: {
