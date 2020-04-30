@@ -19,6 +19,7 @@ A single-page movie application that renders a list of top-rated films, allows u
 #### Technologies
 
 - Vue.js
+- Vuex
 - Vuetify
 - Vue CLI
 - Axios
