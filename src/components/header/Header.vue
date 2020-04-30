@@ -10,19 +10,19 @@
         <v-icon>{{ showFavorites ? 'mdi-home' : 'mdi-heart' }}</v-icon>
       </v-btn>
       <v-btn
-        v-show="pageNum > 1"
-        @click="navigatePage()"
+        v-show="page > 1"
+        @click="navigatePage('backwards')"
         icon>
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-btn
-        @click="navigatePage('next')"
+        @click="navigatePage('forwards')"
         icon>
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
     <v-expand-transition>
       <div v-show="show">
-        <Search @search-response="applySearchResults($event)"/>
+        <Search />
       </div>
     </v-expand-transition>
   </v-container>
@@ -38,7 +38,7 @@ export default {
   },
   props: {
     showFavorites: Boolean,
-    pageNum: Number,
+    page: Number,
   },
   data() {
     return {
@@ -48,9 +48,6 @@ export default {
   methods: {
     toggleView() {
       this.$emit('toggle-view');
-    },
-    applySearchResults($event) {
-      this.$emit('search-response', $event);
     },
     navigatePage(direction) {
       this.$store.dispatch('navigatePage', direction)

@@ -3,11 +3,8 @@
     <v-container>
       <Header
         :showFavorites="showFavorites"
-        :pageNum="pageNumber"
+        :page="page"
         @toggle-view="toggleView()"
-        @go-backwards="pageNumber--"
-        @go-forwards="pageNumber++"
-        @search-response="applySearchResults($event)"
       />
       <div v-show="!showFavorites">
         <MovieList
@@ -66,6 +63,15 @@ export default {
     removeMovie(id) {
       this.$store.dispatch('REMOVE_FROM_FAVORITES', id);
     },
+  },
+
+  watch: {
+    page() {
+      this.$store.dispatch('fetchFilms', {
+        page: this.page,
+        category: this.category
+      })
+    }
   },
 
   mounted() {

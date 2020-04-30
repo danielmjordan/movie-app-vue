@@ -10,16 +10,24 @@ const store = new Vuex.Store({
     favorites: [],
     showFavorites: false,
     heading: '',
+    searchQuery: '',
     page: 1,
-    category: 'upcoming'
+    category: 'top_rated',
+    totalSearchResults: 0,
   },
 
   mutations: {
     SET_MOVIES(state, movies) {
-      state.movies = movies
+      state.movies = movies;
     },
-    PAGE_NEXT(state, page) {
-      state.page = page++;
+    SET_TOTAL_RESULTS(state, totalSearchResults) {
+      state.totalSearchResults = totalSearchResults;
+    },
+    SET_SEARCH_QUERY(state, searchQuery) {
+      state.searchQuery = searchQuery;
+    },
+    PAGE_NEXT(state) {
+      state.page++;
     },
     PAGE_BACK(state) {
       state.page > 0 ? state.page-- : state.page = 1;
@@ -47,14 +55,18 @@ const store = new Vuex.Store({
       .catch((err) => err);
     },
 
-    fetchFilmsByQuery({ commit }, results) {
-      commit('SET_MOVIES', results)
+    fetchFilmsByQuery({ commit }, response) {
+      commit('SET_MOVIES', response.results)
+      commit('SET_TOTAL_RESULTS', response.total_results)
     },
 
     navigatePage({ commit }, direction) {
-      direction === 'next' ? commit('PAGE_NEXT') : commit('PAGE_BACK')
+      if (direction === 'forwards') {
+        commit('PAGE_NEXT')
+      } else if (direction === 'backwards') {
+        commit('PAGE_BACK')
+      }
     },
-
   },
 });
 

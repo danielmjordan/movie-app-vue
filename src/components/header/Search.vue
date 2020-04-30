@@ -53,7 +53,7 @@ export default {
         this.isCalculating = true;
         EventService.getFilmsBySearchQuery(this.searchQuery)
           .then((response) => {
-            this.$store.dispatch('fetchFilmsByQuery', response.data.results);
+            this.$store.dispatch('fetchFilmsByQuery', response.data);
           })
           .then(() => {
             setTimeout(() => {
