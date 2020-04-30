@@ -49,22 +49,16 @@ export default {
   },
 
   computed: {
-    ...mapState({
-      movies: state => state.movies,
-      pageNumber: state => state.page,
-      favorites: state => state.favorites,
-      heading: state => state.heading,
-    })
+    ...mapState([
+      'movies',
+      'page',
+      'favorites',
+      'heading',
+      'category',
+    ])
   },
 
   methods: {
-    applySearchResults($event) {
-      const { results } = $event.data;
-      this.movies = results
-        .filter((el) => el.poster_path)
-        .sort((a, b) => b.popularity - a.popularity);
-      this.heading = 'Search Results';
-    },
     toggleView() {
       this.showFavorites = !this.showFavorites;
       this.$store.dispatch('loadMovies', this.pageNumber);
@@ -74,14 +68,11 @@ export default {
     },
   },
 
-  watch: {
-    pageNumber() {
-      this.$store.dispatch('loadMovies', this.pageNumber);
-    },
-  },
-
   mounted() {
-    this.$store.dispatch('loadMovies', this.pageNumber)
+    this.$store.dispatch('fetchFilms', {
+      page: this.page,
+      category: this.category
+    })
   },
 };
 </script>

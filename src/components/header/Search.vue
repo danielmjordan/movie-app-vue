@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import EventService from '@/services/EventService';
 
 export default {
   name: 'Search',
@@ -51,10 +51,9 @@ export default {
 
       this.timeout = setTimeout(() => {
         this.isCalculating = true;
-        axios
-          .get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=1&query=${this.searchQuery}`)
+        EventService.getFilmsBySearchQuery(this.searchQuery)
           .then((response) => {
-            this.$emit('search-response', response);
+            this.$store.dispatch('fetchFilmsByQuery', response.data.results);
           })
           .then(() => {
             setTimeout(() => {

@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+// import { mapMutations } from 'vuex';
 
 export default {
   name: 'MovieItemDetail',
@@ -42,10 +42,10 @@ export default {
     closeModal() {
       this.$emit('close-modal');
     },
-    ...mapMutations({
-      addToFavorites: ('ADD_TO_FAVORITES', this.movie),
-      removeFromFavorites: ('REMOVE_FROM_FAVORITES', this.movie.id)
-    })
+    // ...mapMutations({
+    //   addToFavorites: ('ADD_TO_FAVORITES', this.movieDetails),
+    //   removeFromFavorites: ('REMOVE_FROM_FAVORITES', this.movieDetails)
+    // })
   },
 };
 </script>

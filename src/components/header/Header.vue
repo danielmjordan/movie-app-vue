@@ -11,12 +11,12 @@
       </v-btn>
       <v-btn
         v-show="pageNum > 1"
-        @click="goBackwards"
+        @click="navigatePage()"
         icon>
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-btn
-        @click="goForwards"
+        @click="navigatePage('next')"
         icon>
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
@@ -52,12 +52,9 @@ export default {
     applySearchResults($event) {
       this.$emit('search-response', $event);
     },
-    goBackwards() {
-      this.$emit('go-backwards');
-    },
-    goForwards() {
-      this.$emit('go-forwards');
-    },
+    navigatePage(direction) {
+      this.$store.dispatch('navigatePage', direction)
+    }
   },
 };
 </script>

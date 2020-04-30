@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
+import EventService from '@/services/EventService';
 
 Vue.use(Vuex);
 
@@ -10,17 +10,18 @@ const store = new Vuex.Store({
     favorites: [],
     showFavorites: false,
     heading: '',
-    page: 2,
+    page: 1,
+    category: 'upcoming'
   },
 
   mutations: {
-    SAVE_MOVIES(state, movies) {
+    SET_MOVIES(state, movies) {
       state.movies = movies
     },
-    PAGE_FORWARDS(state, page) {
+    PAGE_NEXT(state, page) {
       state.page = page++;
     },
-    PAGE_BACKWARDS(state) {
+    PAGE_BACK(state) {
       state.page > 0 ? state.page-- : state.page = 1;
     },
     REMOVE_FROM_LIST(state, id) {
@@ -37,15 +38,23 @@ const store = new Vuex.Store({
   },
 
   actions: {
-    loadMovies({ commit }, page) {
-      axios
-      .get(`${process.env.VUE_APP_BASE_URL}top_rated?api_key=${process.env.VUE_APP_API_KEY}&language=en-US&page=${page}`)
+    fetchFilms({ commit }, { page, category }) {
+      EventService.getFilmsByCategory(page, category)
       .then((response) => {
         const { results } = response.data;
-        commit('SAVE_MOVIES', results);
+        commit('SET_MOVIES', results);
       })
       .catch((err) => err);
     },
+
+    fetchFilmsByQuery({ commit }, results) {
+      commit('SET_MOVIES', results)
+    },
+
+    navigatePage({ commit }, direction) {
+      direction === 'next' ? commit('PAGE_NEXT') : commit('PAGE_BACK')
+    },
+
   },
 });
 
