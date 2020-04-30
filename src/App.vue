@@ -45,15 +45,15 @@ export default {
   data() {
     return {
       showFavorites: false,
-      favorites: [],
-      heading: '',
-      pageNumber: 1,
     };
   },
 
   computed: {
     ...mapState({
       movies: state => state.movies,
+      pageNumber: state => state.page,
+      favorites: state => state.favorites,
+      heading: state => state.heading,
     })
   },
 
@@ -67,30 +67,21 @@ export default {
     },
     toggleView() {
       this.showFavorites = !this.showFavorites;
-      this.getFilms(this.pageNumber);
-    },
-    addFavorite(movie) {
-      if (!this.favorites.includes(movie)) {
-        this.favorites.push(movie);
-      }
+      this.$store.dispatch('loadMovies', this.pageNumber);
     },
     removeMovie(id) {
-      this.movies = this.movies.filter((el) => el.id !== id);
-    },
-    removeFromFavorites(id) {
-      this.favorites = this.favorites.filter((el) => el.id !== id);
+      this.$store.dispatch('REMOVE_FROM_FAVORITES', id);
     },
   },
 
   watch: {
     pageNumber() {
-      this.getFilms(this.pageNumber);
+      this.$store.dispatch('loadMovies', this.pageNumber);
     },
   },
 
   mounted() {
-    // this.getFilms(this.pageNumber);
-    this.$store.dispatch('loadMovies', this.page)
+    this.$store.dispatch('loadMovies', this.pageNumber)
   },
 };
 </script>

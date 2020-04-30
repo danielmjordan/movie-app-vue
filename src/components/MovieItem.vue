@@ -9,6 +9,7 @@
       <MovieItemDetail
         @close-modal="showDetail = false"
         :movieDetails="movie"
+        :favorited="favorited"
         :imageUrl="imageUrl"/>
     </v-dialog>
   </v-expand-transition>
@@ -33,9 +34,9 @@
     </v-card-subtitle>
     <v-card-actions>
       <v-btn
-        @click="addToFavorites"
+        @click="favorited ? removeFromFavorites() : addToFavorites()"
         v-if="showIcon">
-        <v-icon>{{ clicked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+        <v-icon>{{ favorited ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
       <v-btn @click="removeFromList">
         <v-icon>mdi-delete</v-icon>
@@ -63,7 +64,7 @@
       bottom
       left
     >
-      "{{ movie.title }}" has been {{ clicked ? 'added to' : 'removed from' }} your favorites
+      "{{ movie.title }}" has been {{ favorited ? 'added to' : 'removed from' }} your favorites
       <v-btn
         color="blue"
         text
@@ -92,21 +93,25 @@ export default {
     return {
       show: false,
       showDetail: false,
-      clicked: false,
+      favorited: false,
       snackbar: false,
       imageUrl: 'https://image.tmdb.org/t/p/w500',
     };
   },
   methods: {
-    removeFromList() {
-      this.$emit('remove-from-list', this.movie.id);
-      this.clicked = !this.clicked;
-    },
-    addToFavorites() {
-      this.$emit('add-to-favorites', this.movie);
-      this.clicked = !this.clicked;
-      this.snackbar = true;
-    },
+      removeFromList() {
+        this.$store.commit('REMOVE_FROM_LIST', this.movie.id);
+      },
+      addToFavorites() {
+        this.$store.commit('ADD_TO_FAVORITES', this.movie)
+        this.favorited = true;
+        this.snackbar = true;
+      },
+      removeFromFavorites() {
+        this.$store.commit('REMOVE_FROM_FAVORITES', this.movie.id);
+        this.favorited = false;
+        this.snackbar = true;
+      },
   },
 };
 </script>

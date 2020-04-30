@@ -4,22 +4,38 @@ import axios from 'axios';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     movies: [],
     favorites: [],
     showFavorites: false,
     heading: '',
-    page: 1,
+    page: 2,
   },
+
   mutations: {
     SAVE_MOVIES(state, movies) {
       state.movies = movies
     },
-    CHANGE_HEADING(state, heading) {
-      state.heading = heading;
-    }
+    PAGE_FORWARDS(state, page) {
+      state.page = page++;
+    },
+    PAGE_BACKWARDS(state) {
+      state.page > 0 ? state.page-- : state.page = 1;
+    },
+    REMOVE_FROM_LIST(state, id) {
+      state.movies = state.movies.filter((el) => el.id !== id);
+    },
+    ADD_TO_FAVORITES(state, movie) {
+      if (!state.favorites.includes(movie)) {
+        state.favorites.push(movie);
+      }
+    },
+    REMOVE_FROM_FAVORITES(state, id) {
+      state.favorites = state.favorites.filter((el) => el.id !== id);
+    },
   },
+
   actions: {
     loadMovies({ commit }, page) {
       axios
@@ -29,6 +45,8 @@ export default new Vuex.Store({
         commit('SAVE_MOVIES', results);
       })
       .catch((err) => err);
-    }
+    },
   },
 });
+
+export default store;

@@ -1,5 +1,5 @@
 <template>
-  <v-continer fluid>
+  <v-container fluid>
     <v-card>
       <v-img
         :src="movieDetails.backdrop_path ?
@@ -16,8 +16,8 @@
       </v-card-text>
       <v-card-actions>
         <v-btn
-          @click="addToFavorites">
-          <v-icon>{{ clicked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+          @click="favorited ? removeFromFavorites() : addToFavorites()">
+          <v-icon>{{ favorited ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn @click="closeModal">
@@ -25,20 +25,27 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </v-continer>
+  </v-container>
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'MovieItemDetail',
   props: {
     imageUrl: String,
     movieDetails: Object,
+    favorited: Boolean
   },
   methods: {
     closeModal() {
       this.$emit('close-modal');
     },
+    ...mapMutations({
+      addToFavorites: ('ADD_TO_FAVORITES', this.movie),
+      removeFromFavorites: ('REMOVE_FROM_FAVORITES', this.movie.id)
+    })
   },
 };
 </script>
