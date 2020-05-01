@@ -25,7 +25,7 @@
       </v-btn>
     <v-expand-transition>
       <div v-show="showSearch">
-        <Search />
+        <Search @search-completed="showSearch = false"/>
       </div>
     </v-expand-transition>
     <v-expand-transition>

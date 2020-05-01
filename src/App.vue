@@ -58,7 +58,6 @@ export default {
   methods: {
     toggleView() {
       this.showFavorites = !this.showFavorites;
-      this.$store.dispatch('loadMovies', this.pageNumber);
     },
     removeMovie(id) {
       this.$store.dispatch('REMOVE_FROM_FAVORITES', id);

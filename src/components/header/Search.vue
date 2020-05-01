@@ -63,6 +63,12 @@ export default {
               this.searchQueryIsDirty = false;
             }, 500);
           })
+          .then(() => {
+            setTimeout(() => {
+              this.$emit('search-completed');
+              this.searchQuery = '';
+            }, 3000)
+          })
           .catch((err) => err);
       }, 500);
     },
