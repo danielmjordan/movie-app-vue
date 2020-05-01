@@ -33,9 +33,6 @@ export default {
     MovieItem,
   },
   methods: {
-    addFavorite($event) {
-      this.$emit('add-to-favorites', $event);
-    },
     removeMovie($event) {
       this.$emit('remove-from-list', $event);
     },

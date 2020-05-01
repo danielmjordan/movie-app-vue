@@ -3,26 +3,34 @@
     <h1>
       MovieApp
     </h1>
-      <v-btn @click="show = !show" icon>
+      <v-btn @click="showSelect = !showSelect" icon>
+        <v-icon>mdi-sort-variant</v-icon>
+      </v-btn>
+      <v-btn @click="showSearch = !showSearch" icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-btn @click="toggleView" icon>
         <v-icon>{{ showFavorites ? 'mdi-home' : 'mdi-heart' }}</v-icon>
       </v-btn>
       <v-btn
-        v-show="pageNum > 1"
-        @click="goBackwards"
+        :disabled="page === 1"
+        @click="navigatePage('backwards')"
         icon>
         <v-icon>mdi-arrow-left</v-icon>
       </v-btn>
       <v-btn
-        @click="goForwards"
+        @click="navigatePage('forwards')"
         icon>
         <v-icon>mdi-arrow-right</v-icon>
       </v-btn>
     <v-expand-transition>
-      <div v-show="show">
-        <Search @search-response="applySearchResults($event)"/>
+      <div v-show="showSearch">
+        <Search @search-completed="showSearch = false"/>
+      </div>
+    </v-expand-transition>
+    <v-expand-transition>
+      <div v-show="showSelect">
+        <Selector @category-selected="showSelect = false"/>
       </div>
     </v-expand-transition>
   </v-container>
@@ -30,34 +38,31 @@
 
 <script>
 import Search from './Search.vue';
+import Selector from './Selector.vue';
 
 export default {
   name: 'Header',
   components: {
     Search,
+    Selector,
   },
   props: {
     showFavorites: Boolean,
-    pageNum: Number,
+    page: Number,
   },
   data() {
     return {
-      show: false,
+      showSearch: false,
+      showSelect: false,
     };
   },
   methods: {
     toggleView() {
       this.$emit('toggle-view');
     },
-    applySearchResults($event) {
-      this.$emit('search-response', $event);
-    },
-    goBackwards() {
-      this.$emit('go-backwards');
-    },
-    goForwards() {
-      this.$emit('go-forwards');
-    },
+    navigatePage(direction) {
+      this.$store.dispatch('navigatePage', direction)
+    }
   },
 };
 </script>

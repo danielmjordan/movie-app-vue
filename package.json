@@ -39,8 +39,8 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
-      "@vue/airbnb"
+      "eslint:recommended",
+      "plugin:vue/essential"
     ],
     "parserOptions": {
       "parser": "babel-eslint"

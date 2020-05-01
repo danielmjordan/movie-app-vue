@@ -1,5 +1,5 @@
 <template>
-  <v-continer fluid>
+  <v-container fluid>
     <v-card>
       <v-img
         :src="movieDetails.backdrop_path ?
@@ -11,13 +11,13 @@
       <v-card-subtitle>
         Rating: {{ movieDetails.vote_average }} ({{ movieDetails.vote_count}} votes)
       </v-card-subtitle>
-      <v-card-text height="200">
-          {{ movieDetails.overview }}
+      <v-card-text>
+        {{ movieDetails.overview }}
       </v-card-text>
       <v-card-actions>
         <v-btn
-          @click="addToFavorites">
-          <v-icon>{{ clicked ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
+          @click="handleFavorite">
+          <v-icon>{{ favorited ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn @click="closeModal">
@@ -25,20 +25,33 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </v-continer>
+  </v-container>
 </template>
 
 <script>
+
 export default {
   name: 'MovieItemDetail',
   props: {
     imageUrl: String,
     movieDetails: Object,
+    favorited: Boolean,
+    removeFromFavorites: Function,
+    addToFavorites: Function
   },
   methods: {
     closeModal() {
       this.$emit('close-modal');
     },
+    handleFavorite() {
+      if (this.favorited) {
+        this.removeFromFavorites()
+        this.closeModal()
+      } else {
+        this.addToFavorites()
+        this.closeModal()
+      }
+    }
   },
 };
 </script>
