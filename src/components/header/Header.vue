@@ -30,7 +30,7 @@
     </v-expand-transition>
     <v-expand-transition>
       <div v-show="showSelect">
-        <Selector />
+        <Selector @category-selected="showSelect = false"/>
       </div>
     </v-expand-transition>
   </v-container>

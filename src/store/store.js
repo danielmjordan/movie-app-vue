@@ -26,8 +26,8 @@ const store = new Vuex.Store({
     SET_SEARCH_QUERY(state, searchQuery) {
       state.searchQuery = searchQuery;
     },
-    SET_FILTER_SELECTION(state, filterSelectionValue) {
-      state.filterSelection = filterSelectionValue
+    SET_CATEGORY(state, category) {
+      state.category = category
     },
     PAGE_NEXT(state) {
       state.page++;

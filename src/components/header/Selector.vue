@@ -4,7 +4,9 @@
       <v-col class="d-flex" cols="12" sm="6">
         <v-select
           :items="items"
-          label="Standard"
+          label="Select Category"
+          v-model="val"
+          @change="selectCategory"
         ></v-select>
       </v-col>
     </v-row>
@@ -14,14 +16,28 @@
 <script>
 export default {
   name: 'Selector',
+  data() {
+    return {
+      val: ''
+    }
+  },
   computed: {
     items() {
-      return [1, 2, 3]
+      return [
+        {text:'Top Rated', value:'top_rated'},
+        {text:'Now Playing', value:'now_playing'},
+        {text:'Popular', value:'popular'},
+        {text:'Upcoming', value:'upcoming'},
+      ]
     }
   },
   methods: {
-    applyFilterSelection(val) {
-      this.$store.dispatch('applyFilterSelection', val)
+    selectCategory(val) {
+      this.$store.dispatch('fetchFilms', {
+        page: 1,
+        category: val
+      })
+      this.$emit('category-selected')
     }
   }
 }
