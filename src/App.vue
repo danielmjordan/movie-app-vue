@@ -11,8 +11,6 @@
           :movies="movies"
           :showIcon="true"
           :heading="heading"
-          @add-to-favorites="addFavorite($event)"
-          @remove-from-list="removeMovie($event)"
         />
       </div>
       <div v-show="showFavorites">
@@ -20,7 +18,6 @@
           :movies="favorites"
           :showIcon="false"
           :heading="`Favorites (${favorites.length})`"
-          @remove-from-list="removeFromFavorites($event)"
         />
       </div>
       </v-container>

@@ -16,7 +16,7 @@
       </v-card-text>
       <v-card-actions>
         <v-btn
-          @click="favorited ? removeFromFavorites() : addToFavorites()">
+          @click="handleFavorite">
           <v-icon>{{ favorited ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
@@ -43,6 +43,15 @@ export default {
     closeModal() {
       this.$emit('close-modal');
     },
+    handleFavorite() {
+      if (this.favorited) {
+        this.removeFromFavorites()
+        this.closeModal()
+      } else {
+        this.addToFavorites()
+        this.closeModal()
+      }
+    }
   },
 };
 </script>

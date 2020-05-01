@@ -40,7 +40,7 @@
         v-if="showIcon">
         <v-icon>{{ favorited ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
       </v-btn>
-      <v-btn @click="removeFromList">
+      <v-btn @click="favorited ? removeFromFavorites() : removeFromList()">
         <v-icon>mdi-delete</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
@@ -101,19 +101,19 @@ export default {
     };
   },
   methods: {
-      removeFromList() {
-        this.$store.commit('REMOVE_FROM_LIST', this.movie.id);
-      },
-      addToFavorites() {
-        this.$store.commit('ADD_TO_FAVORITES', this.movie)
-        this.favorited = true;
-        this.snackbar = true;
-      },
-      removeFromFavorites() {
-        this.$store.commit('REMOVE_FROM_FAVORITES', this.movie.id);
-        this.favorited = false;
-        this.snackbar = true;
-      },
+    removeFromList() {
+      this.$store.commit('REMOVE_FROM_LIST', this.movie.id);
+    },
+    addToFavorites() {
+      this.$store.commit('ADD_TO_FAVORITES', this.movie)
+      this.favorited = true;
+      this.snackbar = true;
+    },
+    removeFromFavorites() {
+      this.$store.commit('REMOVE_FROM_FAVORITES', this.movie.id);
+      this.favorited = false;
+      this.snackbar = true;
+    },
   },
 };
 </script>

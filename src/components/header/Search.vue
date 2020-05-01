@@ -34,7 +34,7 @@ export default {
       if (this.searchQueryIsDirty) {
         return 'Typing...';
       }
-      return `✓ Finished - (${this.totalSearchResults}) films match your query`;
+      return `✓ Finished - ${this.totalSearchResults} film(s) match your query`;
     },
   },
 
@@ -64,13 +64,16 @@ export default {
             }, 500);
           })
           .then(() => {
-            setTimeout(() => {
-              this.$emit('search-completed');
-              this.searchQuery = '';
-            }, 3000)
+            this.hideAndResetSearch();
           })
           .catch((err) => err);
       }, 500);
+    },
+    hideAndResetSearch() {
+      setTimeout(() => {
+        this.$emit('search-completed');
+        this.searchQuery = '';
+      }, 3000)
     },
   },
 };
