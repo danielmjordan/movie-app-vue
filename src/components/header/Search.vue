@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import EventService from "@/services/EventService";
+import MovieService from "@/services/MovieService";
 import { mapState } from "vuex";
 
 export default {
@@ -51,7 +51,7 @@ export default {
 
 			this.timeout = setTimeout(() => {
 				this.isCalculating = true;
-				EventService.getFilmsBySearchQuery(this.searchQuery)
+				MovieService.getFilmsBySearchQuery(this.searchQuery)
 					.then((response) => {
 						this.$store.dispatch("fetchFilmsByQuery", response.data);
 					})
