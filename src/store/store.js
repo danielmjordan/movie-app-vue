@@ -1,13 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import MovieService from "@/services/MovieService";
+import { saveStatePlugin } from "@/utils";
 
 Vue.use(Vuex);
 
+const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
 const store = new Vuex.Store({
+	plugins: [saveStatePlugin],
 	state: {
 		movies: [],
-		favorites: [],
+		favorites: favorites,
 		showFavorites: false,
 		heading: "",
 		searchQuery: "",
