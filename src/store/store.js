@@ -11,7 +11,7 @@ const store = new Vuex.Store({
 	plugins: [saveStatePlugin],
 	state: {
 		movies: [],
-		favorites: favorites,
+		favorites,
 		showFavorites: false,
 		heading: "",
 		searchQuery: "",
