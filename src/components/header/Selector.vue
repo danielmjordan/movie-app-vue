@@ -20,9 +20,9 @@ export default {
 		return {
 			val: "",
 			items: [
+				{ text: "Popular", value: "popular" },
 				{ text: "Top Rated", value: "top_rated" },
 				{ text: "Now Playing", value: "now_playing" },
-				{ text: "Popular", value: "popular" },
 				{ text: "Upcoming", value: "upcoming" },
 			],
 		};

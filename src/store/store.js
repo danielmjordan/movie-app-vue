@@ -11,12 +11,12 @@ const store = new Vuex.Store({
 	plugins: [saveStatePlugin],
 	state: {
 		movies: [],
-		favorites,
+		favorites: favorites,
 		showFavorites: false,
 		heading: "",
 		searchQuery: "",
 		page: 1,
-		category: "top_rated",
+		category: "popular",
 		totalSearchResults: 0,
 	},
 

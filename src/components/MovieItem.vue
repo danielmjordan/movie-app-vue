@@ -80,7 +80,7 @@ export default {
 		return {
 			show: false,
 			showDetail: false,
-			favorited: false,
+			favorited: false, //todo - determine favorited persistence bug
 			snackbar: false,
 			imageUrl: "https://image.tmdb.org/t/p/w500",
 		};
