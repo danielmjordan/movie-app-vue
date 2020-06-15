@@ -34,14 +34,14 @@
 					@click="favorited ? removeFromFavorites() : addToFavorites()"
 					v-if="showIcon"
 				>
-					<v-icon>{{ favorited ? "mdi-heart" : "mdi-heart-outline" }}</v-icon>
+					<v-icon>{{ favorited ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
 				</v-btn>
 				<v-btn @click="favorited ? removeFromFavorites() : removeFromList()">
 					<v-icon>mdi-delete</v-icon>
 				</v-btn>
 				<v-spacer></v-spacer>
 				<v-btn @click="show = !show" v-if="movie.overview" icon>
-					<v-icon>{{ show ? "mdi-chevron-up" : "mdi-chevron-down" }}</v-icon>
+					<v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
 				</v-btn>
 			</v-card-actions>
 			<v-expand-transition>
@@ -55,7 +55,7 @@
 		<div class="text-center">
 			<v-snackbar v-model="snackbar" :timeout="2500" bottom left>
 				"{{ movie.title }}" has been
-				{{ favorited ? "added to" : "removed from" }} your favorites
+				{{ favorited ? 'added to' : 'removed from' }} your favorites
 				<v-btn color="blue" text @click="snackbar = false">
 					Close
 				</v-btn>
@@ -65,10 +65,10 @@
 </template>
 
 <script>
-import MovieItemDetail from "./MovieItemDetail.vue";
+import MovieItemDetail from './MovieItemDetail.vue';
 
 export default {
-	name: "MovieItem",
+	name: 'MovieItem',
 	props: {
 		movie: Object,
 		showIcon: Boolean,
@@ -82,21 +82,21 @@ export default {
 			showDetail: false,
 			favorited: false, //todo - determine favorited persistence bug
 			snackbar: false,
-			imageUrl: "https://image.tmdb.org/t/p/w500",
+			imageUrl: 'https://image.tmdb.org/t/p/w500',
 		};
 	},
 	methods: {
 		removeFromList() {
-			this.$store.commit("REMOVE_FROM_LIST", this.movie.id);
+			this.$store.commit('REMOVE_FROM_LIST', this.movie.id);
 			this.snackbar = true;
 		},
 		addToFavorites() {
-			this.$store.commit("ADD_TO_FAVORITES", this.movie);
+			this.$store.commit('ADD_TO_FAVORITES', this.movie);
 			this.favorited = true;
 			this.snackbar = true;
 		},
 		removeFromFavorites() {
-			this.$store.commit("REMOVE_FROM_FAVORITES", this.movie.id);
+			this.$store.commit('REMOVE_FROM_FAVORITES', this.movie.id);
 			this.favorited = false;
 			this.snackbar = true;
 		},

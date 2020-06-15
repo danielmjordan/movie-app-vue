@@ -24,9 +24,8 @@ A single-page movie application that renders a list of top-rated films, allows u
 - Vue.js
 - Vuex
 - Vuetify
-- Vue CLI
 - Axios
-- Yarn
+- Netlify
 
 ## Instructions
 
