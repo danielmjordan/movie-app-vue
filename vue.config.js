@@ -1,6 +1,3 @@
 module.exports = {
-  transpileDependencies: [
-    'vuetify',
-    'vuex',
-  ],
+  transpileDependencies: ['vuetify', 'vuex'],
 };

@@ -2,21 +2,26 @@
   <v-container fluid>
     <v-card>
       <v-img
-        :src="movieDetails.backdrop_path ?
-        imageUrl + movieDetails.backdrop_path : imageUrl + movieDetails.poster_path"
+        :src="
+          movieDetails.backdrop_path
+            ? imageUrl + movieDetails.backdrop_path
+            : imageUrl + movieDetails.poster_path
+        "
         height="500"
       >
       </v-img>
       <v-card-title>{{ movieDetails.title }}</v-card-title>
       <v-card-subtitle>
-        Rating: {{ movieDetails.vote_average }} ({{ movieDetails.vote_count}} votes)
+        Rating: {{ movieDetails.vote_average }} ({{
+          movieDetails.vote_count
+        }}
+        votes)
       </v-card-subtitle>
       <v-card-text>
         {{ movieDetails.overview }}
       </v-card-text>
       <v-card-actions>
-        <v-btn
-          @click="handleFavorite">
+        <v-btn @click="handleFavorite">
           <v-icon>{{ favorited ? 'mdi-heart' : 'mdi-heart-outline' }}</v-icon>
         </v-btn>
         <v-spacer></v-spacer>
@@ -29,7 +34,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'MovieItemDetail',
   props: {
@@ -37,7 +41,7 @@ export default {
     movieDetails: Object,
     favorited: Boolean,
     removeFromFavorites: Function,
-    addToFavorites: Function
+    addToFavorites: Function,
   },
   methods: {
     closeModal() {
@@ -45,13 +49,13 @@ export default {
     },
     handleFavorite() {
       if (this.favorited) {
-        this.removeFromFavorites()
-        this.closeModal()
+        this.removeFromFavorites();
+        this.closeModal();
       } else {
-        this.addToFavorites()
-        this.closeModal()
+        this.addToFavorites();
+        this.closeModal();
       }
-    }
+    },
   },
 };
 </script>
